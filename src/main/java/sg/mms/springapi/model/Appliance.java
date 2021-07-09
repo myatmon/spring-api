@@ -21,6 +21,9 @@ public class Appliance {
     @Column(name = "model")
     private String model;
 
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "dateBought")
     private LocalDate dateBought;
 
@@ -56,6 +59,14 @@ public class Appliance {
         this.model = model;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public LocalDate getDateBought() {
         return dateBought;
     }
@@ -66,8 +77,8 @@ public class Appliance {
     
     @Override
     public String toString() {
-        return "Appliance [id=" + id + ", serialNumber=" + serialNumber + ", brand=" + brand + ", model=" + model +
-                ", dateBought="
+        return "Appliance [id=" + id + ", serialNumber=" + serialNumber + ", brand=" + brand + ", model=" + model + ", status="
+                + status + ", dateBought="
                 + dateBought + "]";
     }
 }
