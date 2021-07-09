@@ -1,6 +1,8 @@
 package sg.mms.springapi.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tbl_appliance")
@@ -18,6 +20,9 @@ public class Appliance {
 
     @Column(name = "model")
     private String model;
+
+    @Column(name = "dateBought")
+    private LocalDate dateBought;
 
     public Integer getId() {
         return id;
@@ -51,10 +56,18 @@ public class Appliance {
         this.model = model;
     }
 
+    public LocalDate getDateBought() {
+        return dateBought;
+    }
 
+    public void setDateBought(LocalDate dateBought) {
+        this.dateBought = dateBought;
+    }
+    
     @Override
     public String toString() {
-        return "Appliance [id=" + id + ", serialNumber=" + serialNumber + ", brand=" + brand + ", model=" + model
-                + "]";
+        return "Appliance [id=" + id + ", serialNumber=" + serialNumber + ", brand=" + brand + ", model=" + model +
+                ", dateBought="
+                + dateBought + "]";
     }
 }
