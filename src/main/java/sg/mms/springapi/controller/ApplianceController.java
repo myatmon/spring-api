@@ -29,6 +29,9 @@ public class ApplianceController implements Serializable {
 
     @PostMapping(value = "/appliance")
     public ResponseEntity<Object> save(@Valid @RequestBody Appliance appliance) {
+        if (ApplianceRepository.existsBySerialNumberAndModelAndBrand(appliance.getSerialNumber(), appliance.getModel(), appliance.getBrand())) {
+            return ResponseEntity.status(400).build();
+        }
         Appliance savedAppliance = ApplianceRepository.save(appliance);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedAppliance.getId()).toUri();
         return ResponseEntity.created(location).body(savedAppliance);

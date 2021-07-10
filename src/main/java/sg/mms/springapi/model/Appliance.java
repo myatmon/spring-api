@@ -1,12 +1,13 @@
 package sg.mms.springapi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tbl_appliance")
-public class Appliance {
+@Table(name = "tbl_appliance", uniqueConstraints = {@UniqueConstraint(columnNames = {"serial_number", "brand", "model"})})
+public class Appliance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

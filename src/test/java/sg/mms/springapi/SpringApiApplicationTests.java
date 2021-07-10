@@ -71,6 +71,10 @@ public class SpringApiApplicationTests {
         Assert.assertEquals(appliance.getBrand(), savedAppliance.getBrand());
         Assert.assertEquals(appliance.getModel(), savedAppliance.getModel());
         Assert.assertEquals(appliance.getModel(), savedAppliance.getModel());
+
+        postResponse = restTemplate.postForEntity(getRootUrl() + "/appliance", appliance, Appliance.class);
+        //Expect client error because of constraint unique(serialNumber, brand, model)
+        Assert.assertEquals(400, postResponse.getStatusCodeValue());
     }
 
     @Test

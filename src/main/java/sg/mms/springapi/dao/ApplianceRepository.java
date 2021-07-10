@@ -6,4 +6,5 @@ import sg.mms.springapi.model.Appliance;
 
 @Repository
 public interface ApplianceRepository extends JpaRepository<Appliance, Integer> {
+	boolean existsBySerialNumberAndModelAndBrand(String serialNumber, String model, String brand);
 }
