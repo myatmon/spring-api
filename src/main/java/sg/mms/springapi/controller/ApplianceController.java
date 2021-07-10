@@ -58,6 +58,11 @@ public class ApplianceController implements Serializable {
         }
     }
 
+    @PostMapping("/appliance_exists/")
+    public boolean exits(@RequestBody Appliance appliance) {
+        return ApplianceRepository.existsBySerialNumberAndModelAndBrand(appliance.getSerialNumber(), appliance.getModel(), appliance.getBrand());
+    }
+
     @PutMapping("/appliance")
     public Appliance update(@RequestBody Appliance appliance) {
         return ApplianceRepository.save(appliance);
