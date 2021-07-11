@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RequestMapping("/api")
 @RestController
+@CrossOrigin(origins = "*")
 public class ApplianceController implements Serializable {
 
     @Autowired
@@ -27,6 +28,7 @@ public class ApplianceController implements Serializable {
         return ApplianceRepository.findAll();
     }
 
+	@RequestMapping(value="/**/**",method=RequestMethod.POST)
     @PostMapping(value = "/appliance")
     public ResponseEntity<Object> save(@Valid @RequestBody Appliance appliance) {
         if (ApplianceRepository.existsBySerialNumberAndModelAndBrand(appliance.getSerialNumber(), appliance.getModel(), appliance.getBrand())) {
@@ -62,7 +64,8 @@ public class ApplianceController implements Serializable {
     public boolean exits(@RequestBody Appliance appliance) {
         return ApplianceRepository.existsBySerialNumberAndModelAndBrand(appliance.getSerialNumber(), appliance.getModel(), appliance.getBrand());
     }
-
+    
+    @RequestMapping(value="/**/**",method=RequestMethod.PUT)
     @PutMapping("/appliance")
     public Appliance update(@RequestBody Appliance appliance) {
         return ApplianceRepository.save(appliance);
