@@ -60,7 +60,6 @@ public class SpringApiApplicationTests {
         appliance.setModel("3BR");
         appliance.setStatus("old");
         appliance.setDateBought(LocalDate.of(2021, 7, 12));
-
         ResponseEntity<Appliance> postResponse = restTemplate.postForEntity(getRootUrl() + "/appliance", appliance, Appliance.class);
         Assert.assertEquals(201, postResponse.getStatusCodeValue());
 
@@ -73,7 +72,6 @@ public class SpringApiApplicationTests {
         Assert.assertEquals(appliance.getModel(), savedAppliance.getModel());
 
         postResponse = restTemplate.postForEntity(getRootUrl() + "/appliance", appliance, Appliance.class);
-        //Expect client error because of constraint unique(serialNumber, brand, model)
         Assert.assertEquals(400, postResponse.getStatusCodeValue());
     }
 
